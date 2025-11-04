@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Landing Page — Product</title>
+  <meta name="description" content="Simple, responsive single-file landing page built with HTML & CSS">
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#6ee7b7; /* mint */
+      --accent-2:#7dd3fc; /* cyan */
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-w:1100px;
+      --ff: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff);
+      background:linear-gradient(180deg,var(--bg) 0%, #07101b 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-w);
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      margin-bottom:28px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;place-items:center;font-weight:700;color:#05201a;
+      box-shadow:0 6px 18px rgba(0,0,0,0.45);
+      flex-shrink:0;
+    }
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:15px}
+    nav a:hover{color:#fff}
+    .cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#06241f;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:600}
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;
+      margin-bottom:36px;
+    }
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:30px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{font-size:36px;margin:0 0 12px}
+    p.lead{color:var(--muted);margin:0 0 22px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:600;display:inline-block}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04241f}
+    .btn-outline{border:1px solid rgba(255,255,255,0.06);color:var(--muted);background:transparent}
+
+    /* Right column preview */
+    .preview{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;padding:18px;box-shadow:inset 0 1px rgba(255,255,255,0.02), 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .mock{
+      background:linear-gradient(180deg,#06121a 0%, #071826 100%);
+      border-radius:12px;padding:12px;min-height:260px;display:flex;flex-direction:column;gap:12px}
+    .mock .bar{height:14px;border-radius:8px;background:linear-gradient(90deg,#08202a,#0b2830);box-shadow:inset 0 -1px 0 rgba(255,255,255,0.02)}
+    .mock .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1}
+    .card-sm{background:var(--glass);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:13px;color:var(--muted)}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px}
+    .feature{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .feature h3{margin:0 0 6px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Pricing */
+    .pricing{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:36px}
+    .price-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:20px;border-radius:12px;text-align:center}
+    .price{font-size:28px;font-weight:700;margin:8px 0}
+    .small{color:var(--muted);font-size:14px}
+
+    /* Testimonials */
+    .testimonials{display:flex;gap:12px;align-items:center;margin-bottom:36px}
+    .testimonials .quote{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .testimonials .people{display:flex;gap:10px}
+    .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(90deg,#9be7d7,#8fd5ff);display:grid;place-items:center;color:#04241f;font-weight:700}
+
+    footer{color:var(--muted);display:flex;justify-content:space-between;gap:20px;align-items:center;padding-top:10px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .pricing{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      body{padding:18px}
+      h1{font-size:28px}
+      .features{grid-template-columns:1fr}
+    }
+
+    /* Small utility */
+    .muted{color:var(--muted)}
+    .center{display:grid;place-items:center}
+
+    /* subtle entrance animation */
+    .fade-in{opacity:0;transform:translateY(8px);animation:fade .8s ease-out forwards}
+    @keyframes fade{to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="fade-in">
+      <div class="brand">
+        <div class="logo">P</div>
+        <div>
+          <div style="font-weight:700">Product</div>
+          <div style="font-size:13px;color:var(--muted)">Beautiful &amp; simple</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a class="cta" href="#">Get started</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-card hero fade-in">
+        <div>
+          <h1>Build faster with a clean, responsive landing page</h1>
+          <p class="lead">A single-file example showing layout, spacing, colors, and modular sections. Great starter project for HTML/CSS learners.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#">Try demo</a>
+            <a class="btn btn-outline" href="#features">Learn more</a>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+            <span class="pill">Responsive</span>
+            <span class="pill">No frameworks</span>
+            <span class="pill">Accessible</span>
+          </div>
+        </div>
+
+        <aside class="preview">
+          <div class="mock">
+            <div class="bar" style="width:60%"></div>
+            <div class="grid">
+              <div class="card-sm"><div style="font-weight:700">Dashboard</div><div class="muted">Overview &amp; stats</div></div>
+              <div class="card-sm"><div style="font-weight:700">Reports</div><div class="muted">Export CSV, PDF</div></div>
+              <div class="card-sm"><div style="font-weight:700">Integrations</div><div class="muted">Slack, Email</div></div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+              <div class="muted">Live preview</div>
+              <div style="display:flex;gap:8px">
+                <div class="pill">New</div>
+                <div class="pill">v1.2</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="features" class="features fade-in">
+        <div class="feature">
+          <h3>Flexible layout</h3>
+          <p>Learn how to arrange columns and sections using CSS Grid & Flexbox so elements never overlap.</p>
+        </div>
+        <div class="feature">
+          <h3>Design system</h3>
+          <p>Create a consistent color palette, spacing scale, and rounded corners to make polished UI.</p>
+        </div>
+        <div class="feature">
+          <h3>Performance</h3>
+          <p>Single-file HTML/CSS means fewer requests — a good starting point for optimization.</p>
+        </div>
+      </section>
+
+      <section id="pricing" class="pricing fade-in">
+        <div class="price-card">
+          <div class="small">Free</div>
+          <div class="price">$0</div>
+          <div class="muted">For experiments & learning</div>
+          <div style="margin-top:12px"><a class="btn btn-outline" href="#">Get Free</a></div>
+        </div>
+        <div class="price-card">
+          <div class="small">Pro</div>
+          <div class="price">$9 / mo</div>
+          <div class="muted">For personal projects</div>
+          <div style="margin-top:12px"><a class="btn btn-primary" href="#">Choose Pro</a></div>
+        </div>
+        <div class="price-card">
+          <div class="small">Team</div>
+          <div class="price">$29 / mo</div>
+          <div class="muted">Collaboration &amp; sharing</div>
+          <div style="margin-top:12px"><a class="btn btn-outline" href="#">Contact sales</a></div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials fade-in">
+        <div class="quote">
+          <div style="font-size:18px;font-weight:700">"This template saved hours of design time — elegant and minimal."</div>
+          <div class="muted" style="margin-top:8px">— S. Khan, Frontend Developer</div>
+        </div>
+        <div class="people">
+          <div class="center"><div class="avatar">SK</div></div>
+          <div class="center"><div class="avatar">AL</div></div>
+          <div class="center"><div class="avatar">RT</div></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="fade-in">
+      <div>&copy; <span id="year"></span> Product. All rights reserved.</div>
+      <div>Made with ♥ • <span class="muted">HTML & CSS</span></div>
+    </footer>
+  </div>
+
+  <script>
+    // small JS only for dynamic year and entrance stagger
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // stagger animations
+    document.querySelectorAll('.fade-in').forEach((el,i)=>{
+      el.style.animationDelay = (i*0.08)+'s';
+    });
+  </script>
+</body>
+</html>
